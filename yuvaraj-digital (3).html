@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yuvaraj Digital — Digital Marketing Freelancer, Chennai</title>
+<meta name="description" content="Yuvaraj Digital – Chennai-based digital marketing freelancer. Google Ads, Meta Ads, SEO, Social Media. Call +91 7200603280.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ── RESET & TOKENS ── */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+:root{
+  --bg:#04040a;--bg2:#070710;--surface:#0e0e1c;--surface2:#14142a;
+  --border:rgba(120,100,255,.12);--border-lit:rgba(120,100,255,.28);
+  --text:#f0eeff;--muted:#8880aa;--muted2:#bbb5d8;
+  --accent:#7c5cff;--accent2:#ff5caa;--accent3:#5cffb8;
+  --gold:#ffd166;--wa:#25d366;--phone:#4fc3f7;
+  --grad:linear-gradient(135deg,#7c5cff 0%,#ff5caa 100%);
+  --grad2:linear-gradient(135deg,#5cffb8 0%,#7c5cff 100%);
+  --fd:'Bebas Neue',sans-serif;
+  --fb:'Outfit',sans-serif;
+  --fa:'Space Grotesk',sans-serif;
+}
+body{background:var(--bg);color:var(--text);font-family:var(--fb);font-size:16px;line-height:1.65;overflow-x:hidden;cursor:none;}
+
+/* ── CURSOR ── */
+#cur{position:fixed;z-index:9999;pointer-events:none;width:10px;height:10px;background:var(--accent);border-radius:50%;transform:translate(-50%,-50%);mix-blend-mode:screen;transition:background .2s;}
+#ring{position:fixed;z-index:9998;pointer-events:none;width:38px;height:38px;border:1.5px solid rgba(124,92,255,.4);border-radius:50%;transform:translate(-50%,-50%);transition:width .3s,height .3s,border-color .3s;}
+body:has(a:hover) #ring,body:has(button:hover) #ring{width:56px;height:56px;border-color:rgba(124,92,255,.75);}
+body:has(a:hover) #cur{background:var(--accent2);}
+
+/* ── CANVAS & OVERLAY ── */
+#bgc{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.55;}
+body::after{content:'';position:fixed;inset:0;z-index:2;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(0,0,0,.025) 0px,rgba(0,0,0,.025) 1px,transparent 1px,transparent 2px);}
+
+/* ── MOBILE NAV OVERLAY ── */
+#mobile-nav{display:none;position:fixed;inset:0;z-index:600;background:rgba(4,4,10,.98);backdrop-filter:blur(30px);flex-direction:column;align-items:center;justify-content:center;gap:2.5rem;}
+#mobile-nav.open{display:flex;}
+#mobile-nav a{font-family:var(--fd);font-size:3rem;letter-spacing:.08em;color:var(--text);text-decoration:none;transition:color .2s;}
+#mobile-nav a:hover{color:var(--accent2);}
+#mobile-nav .mn-close{position:absolute;top:2rem;right:2rem;background:none;border:1px solid var(--border-lit);color:var(--muted);width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;cursor:none;}
+#mobile-nav .mn-contact{display:flex;flex-direction:column;align-items:center;gap:1rem;margin-top:1rem;}
+#mobile-nav .mn-phone{font-family:var(--fa);font-size:1rem;font-weight:600;color:var(--phone);text-decoration:none;}
+#mobile-nav .mn-wa{font-family:var(--fa);font-size:1rem;font-weight:600;color:var(--wa);text-decoration:none;}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:1.25rem 4rem;transition:all .4s cubic-bezier(.16,1,.3,1);}
+nav.sc{background:rgba(4,4,10,.92);backdrop-filter:blur(28px) saturate(1.5);border-bottom:1px solid var(--border-lit);padding:.85rem 4rem;}
+.logo-w{text-decoration:none;display:flex;flex-direction:column;line-height:1;}
+.logo-n{font-family:var(--fd);font-size:1.7rem;letter-spacing:.07em;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 16px rgba(124,92,255,.5));}
+.logo-t{font-family:var(--fa);font-size:.56rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-top:.1rem;}
+.nav-ul{display:flex;gap:2.25rem;list-style:none;align-items:center;}
+.nav-ul a{font-family:var(--fa);font-size:.78rem;font-weight:500;color:var(--muted);text-decoration:none;letter-spacing:.06em;transition:color .2s;position:relative;}
+.nav-ul a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--grad);transition:width .25s;}
+.nav-ul a:hover{color:var(--text);}.nav-ul a:hover::after{width:100%;}
+.nav-ph{display:flex;align-items:center;gap:.45rem;font-family:var(--fa);font-size:.78rem;font-weight:600;color:var(--phone);text-decoration:none;border:1px solid rgba(79,195,247,.22);padding:.45rem 1rem;border-radius:100px;transition:background .2s,border-color .2s;}
+.nav-ph:hover{background:rgba(79,195,247,.07);border-color:rgba(79,195,247,.4);}
+.nav-ph svg{width:13px;height:13px;fill:var(--phone);}
+.hamburger{display:none;background:none;border:1px solid var(--border-lit);color:var(--muted);width:40px;height:40px;border-radius:8px;align-items:center;justify-content:center;cursor:none;font-size:1.1rem;}
+
+/* ── HERO ── */
+#hero{min-height:100vh;display:flex;align-items:center;padding:9rem 4rem 6rem;position:relative;overflow:hidden;z-index:10;}
+.hg{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(124,92,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(124,92,255,.04) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse 80% 80% at 50% 45%,black 5%,transparent 100%);}
+.orb{position:absolute;border-radius:50%;pointer-events:none;filter:blur(80px);}
+.o1{width:520px;height:520px;background:rgba(124,92,255,.16);top:-12%;left:-10%;animation:of1 12s ease-in-out infinite alternate;}
+.o2{width:400px;height:400px;background:rgba(255,92,170,.12);bottom:-8%;right:-6%;animation:of2 10s ease-in-out infinite alternate;}
+.o3{width:260px;height:260px;background:rgba(92,255,184,.08);top:38%;right:14%;animation:of3 14s ease-in-out infinite alternate;}
+@keyframes of1{to{transform:translate(40px,30px) scale(1.08);}}
+@keyframes of2{to{transform:translate(-30px,-25px) scale(1.05);}}
+@keyframes of3{to{transform:translate(20px,-40px) scale(1.1);}}
+.hi{position:relative;z-index:5;max-width:860px;}
+.hbadge{display:inline-flex;align-items:center;gap:.6rem;background:rgba(124,92,255,.08);border:1px solid var(--border-lit);padding:.4rem 1.1rem;border-radius:100px;font-family:var(--fa);font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted2);margin-bottom:2.25rem;animation:fu .7s ease both;}
+.bdot{width:6px;height:6px;background:var(--accent3);border-radius:50%;animation:bp 2s ease-in-out infinite;}
+@keyframes bp{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.7)}}
+.hbrand{font-family:var(--fd);font-size:clamp(3.5rem,10vw,9.5rem);line-height:.92;letter-spacing:.04em;animation:fu .7s .1s ease both;}
+.hb1{display:block;color:var(--text);}
+.hb2{display:block;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 40px rgba(124,92,255,.6));}
+.hb3{display:block;-webkit-text-stroke:1px rgba(255,255,255,.18);color:transparent;}
+.htag{font-family:var(--fa);font-size:clamp(.88rem,1.5vw,1.12rem);font-weight:400;color:var(--muted2);max-width:520px;margin:1.75rem 0 2.75rem;line-height:1.82;animation:fu .7s .2s ease both;}
+.htag strong{color:var(--accent3);font-weight:600;}
+.hctas{display:flex;gap:1rem;flex-wrap:wrap;align-items:center;animation:fu .7s .3s ease both;margin-bottom:3.5rem;}
+.cp{display:inline-flex;align-items:center;gap:.6rem;background:var(--grad);color:#fff;padding:.95rem 2.25rem;border-radius:100px;font-family:var(--fa);font-size:.88rem;font-weight:700;text-decoration:none;cursor:none;transition:transform .18s,box-shadow .18s,filter .18s;box-shadow:0 0 40px rgba(124,92,255,.35);letter-spacing:.02em;}
+.cp:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 0 64px rgba(124,92,255,.55);filter:brightness(1.1);}
+.cw{display:inline-flex;align-items:center;gap:.6rem;background:var(--wa);color:#fff;padding:.95rem 2rem;border-radius:100px;font-family:var(--fa);font-size:.88rem;font-weight:700;text-decoration:none;cursor:none;transition:transform .18s,box-shadow .18s;box-shadow:0 0 30px rgba(37,211,102,.25);}
+.cw:hover{transform:translateY(-3px);box-shadow:0 0 52px rgba(37,211,102,.5);}
+.cw svg,.cc svg{width:17px;height:17px;fill:#fff;flex-shrink:0;}
+.cc{display:inline-flex;align-items:center;gap:.6rem;border:1.5px solid var(--border-lit);color:var(--phone);padding:.9rem 1.75rem;border-radius:100px;font-family:var(--fa);font-size:.88rem;font-weight:600;text-decoration:none;cursor:none;transition:border-color .2s,background .2s,transform .18s;}
+.cc:hover{border-color:var(--phone);background:rgba(79,195,247,.06);transform:translateY(-2px);}
+.hstats{display:flex;gap:2.5rem;flex-wrap:wrap;animation:fu .7s .4s ease both;}
+.hs-n{font-family:var(--fd);font-size:2.4rem;letter-spacing:.03em;line-height:1;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hs-l{font-family:var(--fa);font-size:.68rem;font-weight:500;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-top:.15rem;}
+.scroll-i{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;animation:fu .7s .9s ease both;z-index:5;}
+.sli{width:1px;height:60px;background:linear-gradient(to bottom,var(--accent),transparent);animation:sp 2s ease-in-out infinite;}
+.slbl{font-family:var(--fa);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);}
+@keyframes sp{0%,100%{opacity:.3;transform:scaleY(1)}50%{opacity:1;transform:scaleY(1.1)}}
+@keyframes fu{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── MARQUEE ── */
+.mqw{position:relative;z-index:10;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:1rem 0;background:rgba(14,14,28,.75);backdrop-filter:blur(10px);overflow:hidden;}
+.mt{display:flex;gap:3rem;animation:mq 28s linear infinite;white-space:nowrap;}
+.mt:hover{animation-play-state:paused;}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.mi{display:flex;align-items:center;gap:.8rem;flex-shrink:0;font-family:var(--fa);font-size:.68rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);}
+.mi::after{content:'✦';color:var(--accent);font-size:.55rem;}
+
+/* ── SECTION HELPERS ── */
+section{padding:8rem 4rem;position:relative;z-index:10;}
+.stag{display:block;font-family:var(--fa);font-size:.65rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--accent2);margin-bottom:.9rem;}
+.sh2{font-family:var(--fd);font-size:clamp(2.4rem,5vw,4.5rem);letter-spacing:.04em;line-height:1;margin-bottom:1.25rem;}
+.sh2 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.ssub{font-family:var(--fb);font-size:.95rem;color:var(--muted2);font-weight:300;line-height:1.85;max-width:540px;}
+
+/* ── WHY CHOOSE ME ── */
+#why{background:linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%);}
+.why-hd{text-align:center;max-width:680px;margin:0 auto 5rem;}
+.why-hd .ssub{margin:0 auto;text-align:center;}
+.wgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:1100px;margin:0 auto;}
+.wcard{background:rgba(14,14,28,.8);border:1px solid var(--border);border-radius:16px;padding:2.5rem 2rem;position:relative;overflow:hidden;transition:transform .4s cubic-bezier(.16,1,.3,1),border-color .3s,box-shadow .4s;cursor:none;backdrop-filter:blur(10px);}
+.wcard::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad);transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.16,1,.3,1);}
+.wcard:hover{transform:translateY(-8px) scale(1.01);border-color:var(--border-lit);box-shadow:0 24px 80px rgba(124,92,255,.15);}
+.wcard:hover::before{transform:scaleX(1);}
+.wcard:nth-child(2){margin-top:1.5rem;} .wcard:nth-child(5){margin-top:1.5rem;}
+.wfeat{background:linear-gradient(135deg,rgba(124,92,255,.12) 0%,rgba(255,92,170,.08) 100%);border-color:rgba(124,92,255,.3);}
+.wico{width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:1.5rem;}
+.wi1{background:rgba(124,92,255,.15);box-shadow:0 0 30px rgba(124,92,255,.15);}
+.wi2{background:rgba(255,92,170,.15);box-shadow:0 0 30px rgba(255,92,170,.15);}
+.wi3{background:rgba(92,255,184,.15);box-shadow:0 0 30px rgba(92,255,184,.15);}
+.wi4{background:rgba(255,209,102,.15);box-shadow:0 0 30px rgba(255,209,102,.15);}
+.wi5{background:rgba(79,195,247,.15);box-shadow:0 0 30px rgba(79,195,247,.15);}
+.wi6{background:rgba(124,92,255,.15);box-shadow:0 0 30px rgba(124,92,255,.15);}
+.wtit{font-family:var(--fa);font-size:1.05rem;font-weight:700;margin-bottom:.65rem;}
+.wdsc{font-size:.875rem;color:var(--muted2);line-height:1.8;font-weight:300;}
+.wmet{display:block;font-family:var(--fd);font-size:1.5rem;letter-spacing:.04em;margin-top:1.25rem;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.wmetl{font-family:var(--fa);font-size:.65rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;display:block;}
+
+/* ── SERVICES ── */
+#services{background:var(--bg2);}
+.sint{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:4rem;gap:2rem;flex-wrap:wrap;}
+.sintn{font-size:.875rem;color:var(--muted);max-width:260px;line-height:1.8;}
+.sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:16px;overflow:hidden;}
+.scard{background:var(--bg2);padding:2.75rem 2.25rem;transition:background .35s;position:relative;overflow:hidden;cursor:none;}
+.scard::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad2);transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.16,1,.3,1);}
+.scard:hover{background:var(--surface);} .scard:hover::after{transform:scaleX(1);}
+.snum{font-family:var(--fd);font-size:.75rem;letter-spacing:.18em;color:var(--accent);margin-bottom:1.5rem;}
+.sico{font-size:2rem;margin-bottom:1.25rem;display:block;}
+.stitle{font-family:var(--fa);font-size:1.05rem;font-weight:700;margin-bottom:.6rem;}
+.sdsc{font-size:.855rem;color:var(--muted2);line-height:1.78;}
+.stags2{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:1.25rem;}
+.stag2{font-size:.62rem;color:var(--muted);border:1px solid var(--border);padding:.18rem .55rem;border-radius:100px;letter-spacing:.06em;}
+.scta{display:inline-flex;align-items:center;gap:.4rem;margin-top:1.5rem;font-family:var(--fa);font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent2);text-decoration:none;cursor:none;transition:gap .2s;}
+.scta:hover{gap:.7rem;}
+
+/* ── ABOUT ── */
+#about{display:grid;grid-template-columns:1.1fr 1fr;gap:6rem;align-items:center;}
+.acard{background:linear-gradient(145deg,var(--surface) 0%,rgba(14,14,28,.95) 100%);border:1px solid var(--border-lit);border-radius:24px;padding:3rem;position:relative;overflow:hidden;box-shadow:0 40px 120px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.06);transition:transform .4s ease,box-shadow .4s ease;}
+.acbg{position:absolute;top:-60px;right:-60px;width:220px;height:220px;background:radial-gradient(circle,rgba(124,92,255,.12) 0%,transparent 70%);pointer-events:none;}
+.avrow{display:flex;align-items:center;gap:1.25rem;margin-bottom:2rem;}
+.avcirc{width:80px;height:80px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:1.8rem;color:#fff;flex-shrink:0;box-shadow:0 0 40px rgba(124,92,255,.45);position:relative;}
+.avcirc::after{content:'';position:absolute;inset:-4px;border-radius:50%;border:1.5px solid rgba(124,92,255,.3);animation:rp 3s ease-in-out infinite;}
+@keyframes rp{0%,100%{transform:scale(1);opacity:.5}50%{transform:scale(1.12);opacity:1}}
+.avnam{font-family:var(--fd);font-size:1.25rem;letter-spacing:.06em;line-height:1;}
+.avrole{font-family:var(--fa);font-size:.75rem;color:var(--muted);margin-top:.3rem;}
+.avloc{display:inline-flex;align-items:center;gap:.3rem;font-family:var(--fa);font-size:.7rem;color:var(--accent3);margin-top:.25rem;}
+.abio{font-size:.875rem;color:var(--muted2);line-height:1.85;font-weight:300;margin-bottom:2rem;}
+.astg{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:2rem;}
+.ast{background:var(--surface2);padding:1.1rem;text-align:center;}
+.asv{font-family:var(--fd);font-size:1.6rem;letter-spacing:.04em;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.asl{font-family:var(--fa);font-size:.6rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-top:.15rem;}
+.acont{display:flex;flex-direction:column;gap:.75rem;margin-bottom:1.75rem;}
+.aci{display:flex;align-items:center;gap:.75rem;font-family:var(--fa);font-size:.8rem;color:var(--muted2);text-decoration:none;transition:color .2s;}
+.aci:hover{color:var(--text);}
+.acio{width:32px;height:32px;border-radius:8px;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0;}
+.bwa{display:inline-flex;align-items:center;gap:.6rem;background:var(--wa);color:#fff;padding:.8rem 1.5rem;border-radius:100px;font-family:var(--fa);font-size:.82rem;font-weight:700;text-decoration:none;cursor:none;transition:transform .15s,box-shadow .15s;box-shadow:0 8px 30px rgba(37,211,102,.25);}
+.bwa:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(37,211,102,.4);}
+.bwa svg{width:16px;height:16px;fill:#fff;}
+.atxt .stag{text-align:left;}
+.abdy{font-size:.9rem;color:var(--muted2);font-weight:300;line-height:1.9;margin-bottom:1.1rem;}
+.schips{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.75rem;}
+.schip{font-family:var(--fa);font-size:.7rem;font-weight:600;border:1px solid var(--border-lit);padding:.3rem .85rem;border-radius:100px;color:var(--muted2);letter-spacing:.04em;background:rgba(124,92,255,.06);transition:border-color .2s,color .2s,background .2s;cursor:default;}
+.schip:hover{border-color:rgba(124,92,255,.5);color:var(--text);background:rgba(124,92,255,.12);}
+
+/* ── PORTFOLIO ── */
+#portfolio{background:var(--bg2);}
+.phd{max-width:560px;margin-bottom:4rem;}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+.pcard{background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:transform .4s cubic-bezier(.16,1,.3,1),border-color .3s,box-shadow .4s;cursor:none;}
+.pcard:hover{transform:translateY(-8px);border-color:var(--border-lit);box-shadow:0 24px 80px rgba(124,92,255,.12);}
+.pvis{height:170px;display:flex;align-items:center;justify-content:center;font-size:2.5rem;position:relative;overflow:hidden;}
+.pv1{background:radial-gradient(circle at 30% 50%,rgba(124,92,255,.25),transparent 70%),#09091a;}
+.pv2{background:radial-gradient(circle at 70% 40%,rgba(255,92,170,.2),transparent 70%),#1a090f;}
+.pv3{background:radial-gradient(circle at 50% 30%,rgba(92,255,184,.15),transparent 70%),#091a13;}
+.pv4{background:radial-gradient(circle at 30% 70%,rgba(255,209,102,.15),transparent 70%),#1a1509;}
+.pv5{background:radial-gradient(circle at 70% 60%,rgba(79,195,247,.15),transparent 70%),#09131a;}
+.pv6{background:radial-gradient(circle at 50% 50%,rgba(124,92,255,.2),transparent 70%),#0e091a;}
+.pem{position:relative;z-index:1;filter:drop-shadow(0 0 20px rgba(255,255,255,.2));}
+.pbdy{padding:1.5rem;}
+.pcat{font-family:var(--fa);font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent2);margin-bottom:.35rem;}
+.pnam{font-family:var(--fa);font-size:.95rem;font-weight:700;margin-bottom:.35rem;}
+.pres{font-size:.78rem;color:var(--muted);line-height:1.65;}
+.pbdg{display:inline-flex;align-items:center;gap:.3rem;margin-top:.85rem;font-family:var(--fa);font-size:.7rem;font-weight:700;color:var(--accent3);background:rgba(92,255,184,.07);border:1px solid rgba(92,255,184,.2);padding:.22rem .65rem;border-radius:100px;}
+
+/* ── PROCESS ── */
+#process{}
+.prochd{max-width:500px;margin-bottom:5rem;}
+.procgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;position:relative;}
+.procgrid::before{content:'';position:absolute;top:32px;left:12%;right:12%;height:1px;background:linear-gradient(90deg,var(--accent),rgba(255,92,170,.5),transparent);opacity:.4;}
+.ps .pn{width:64px;height:64px;border:1.5px solid var(--border-lit);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:1.1rem;color:var(--accent);margin-bottom:1.75rem;background:var(--bg);position:relative;z-index:1;transition:border-color .3s,background .3s,box-shadow .3s;}
+.ps:hover .pn{border-color:var(--accent);background:rgba(124,92,255,.08);box-shadow:0 0 30px rgba(124,92,255,.2);}
+.ptit{font-family:var(--fa);font-size:.95rem;font-weight:700;letter-spacing:-.01em;margin-bottom:.6rem;}
+.pdsc{font-size:.845rem;color:var(--muted);line-height:1.78;}
+
+/* ── TESTIMONIALS ── */
+#testimonials{background:var(--bg2);}
+.thd{max-width:540px;margin-bottom:4.5rem;}
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+.tcard{background:rgba(14,14,28,.9);border:1px solid var(--border);padding:2.25rem;border-radius:14px;transition:border-color .3s,transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s;backdrop-filter:blur(10px);cursor:none;}
+.tcard:nth-child(2){margin-top:2rem;} .tcard:nth-child(3){margin-top:1rem;}
+.tcard:hover{border-color:var(--border-lit);transform:translateY(-6px);box-shadow:0 20px 60px rgba(124,92,255,.1);}
+.tq{font-family:var(--fd);font-size:4rem;line-height:.5;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;margin-bottom:1.25rem;}
+.tstars{color:var(--gold);font-size:.75rem;letter-spacing:3px;margin-bottom:.9rem;}
+.ttxt{font-size:.875rem;color:var(--muted2);line-height:1.85;font-weight:300;margin-bottom:1.75rem;}
+.tau{display:flex;align-items:center;gap:.85rem;}
+.tav{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:.85rem;flex-shrink:0;}
+.ta1{background:rgba(124,92,255,.12);color:var(--accent);border:1px solid rgba(124,92,255,.2);}
+.ta2{background:rgba(255,92,170,.1);color:var(--accent2);border:1px solid rgba(255,92,170,.2);}
+.ta3{background:rgba(92,255,184,.1);color:var(--accent3);border:1px solid rgba(92,255,184,.2);}
+.ta4{background:rgba(255,209,102,.08);color:var(--gold);border:1px solid rgba(255,209,102,.2);}
+.ta5{background:rgba(79,195,247,.1);color:var(--phone);border:1px solid rgba(79,195,247,.2);}
+.ta6{background:rgba(124,92,255,.1);color:var(--accent);border:1px solid rgba(124,92,255,.2);}
+.tnam{font-family:var(--fa);font-size:.845rem;font-weight:700;}
+.trol{font-family:var(--fa);font-size:.7rem;color:var(--muted);margin-top:.08rem;}
+
+/* ── FAQ ── */
+#faq{background:var(--bg);}
+.faqhd{max-width:560px;margin-bottom:4rem;}
+.faqlist{max-width:800px;display:flex;flex-direction:column;gap:.75rem;}
+.faqitem{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;cursor:none;transition:border-color .3s;}
+.faqitem.open{border-color:var(--border-lit);}
+.faqq{display:flex;align-items:center;justify-content:space-between;padding:1.5rem 2rem;font-family:var(--fa);font-size:.95rem;font-weight:600;color:var(--text);gap:1rem;}
+.faqq:hover{color:var(--accent2);}
+.faqarrow{width:28px;height:28px;border:1px solid var(--border-lit);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.75rem;color:var(--muted);transition:transform .3s,border-color .3s,color .3s;}
+.faqitem.open .faqarrow{transform:rotate(45deg);border-color:var(--accent2);color:var(--accent2);}
+.faqa{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.16,1,.3,1);}
+.faqa-inner{padding:0 2rem 1.5rem;font-size:.875rem;color:var(--muted2);line-height:1.85;font-weight:300;}
+.faqitem.open .faqa{max-height:300px;}
+
+/* ── CTA BANNER ── */
+#ctabanner{background:linear-gradient(135deg,rgba(124,92,255,.15) 0%,rgba(255,92,170,.1) 100%);border-top:1px solid var(--border-lit);border-bottom:1px solid var(--border-lit);padding:5rem 4rem;text-align:center;position:relative;overflow:hidden;z-index:10;}
+#ctabanner::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 50%,rgba(124,92,255,.08) 0%,transparent 100%);pointer-events:none;}
+.ctabn{font-family:var(--fd);font-size:clamp(2rem,5vw,4rem);letter-spacing:.04em;line-height:1;margin-bottom:1rem;position:relative;}
+.ctabn em{font-style:normal;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.ctasub{font-family:var(--fa);font-size:.95rem;color:var(--muted2);font-weight:300;margin-bottom:2.5rem;position:relative;}
+.ctarow{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;position:relative;}
+
+/* ── CONTACT ── */
+#contact{}
+.cgrid{display:grid;grid-template-columns:1fr 1.35fr;gap:6rem;align-items:start;}
+.cintro{font-size:.9rem;color:var(--muted2);line-height:1.85;font-weight:300;margin-bottom:2.5rem;}
+.citems{display:flex;flex-direction:column;gap:1.1rem;margin-bottom:2.5rem;}
+.ci{display:flex;align-items:center;gap:1rem;text-decoration:none;color:var(--text);transition:color .2s;}
+.ci:hover{color:var(--accent2);}
+.cico{width:44px;height:44px;border:1px solid var(--border-lit);border-radius:10px;background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;transition:border-color .2s,background .2s;}
+.ci:hover .cico{border-color:var(--accent2);background:rgba(255,92,170,.06);}
+.clbl{font-family:var(--fa);font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;}
+.cval{font-family:var(--fa);font-size:.875rem;font-weight:600;margin-top:.05rem;}
+.wabig{display:inline-flex;align-items:center;gap:.75rem;background:var(--wa);color:#fff;padding:1rem 2.25rem;border-radius:100px;font-family:var(--fa);font-size:.9rem;font-weight:700;text-decoration:none;cursor:none;transition:transform .18s,box-shadow .18s;box-shadow:0 12px 40px rgba(37,211,102,.3);}
+.wabig:hover{transform:translateY(-3px);box-shadow:0 18px 55px rgba(37,211,102,.5);}
+.wabig svg{width:20px;height:20px;fill:#fff;}
+.cform{display:flex;flex-direction:column;gap:1rem;}
+.fr2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.fg{display:flex;flex-direction:column;gap:.4rem;}
+.fl{font-family:var(--fa);font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);}
+.fc{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:.85rem 1rem;color:var(--text);font-family:var(--fb);font-size:.875rem;outline:none;resize:none;transition:border-color .2s,background .2s,box-shadow .2s;}
+.fc::placeholder{color:var(--muted);opacity:.4;} .fc:focus{border-color:rgba(124,92,255,.4);background:var(--surface2);box-shadow:0 0 0 3px rgba(124,92,255,.08);}
+.fc option{background:#14142a;}
+.fsel{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='7'%3E%3Cpath fill='%238880aa' d='M5 7L0 0h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center;cursor:none;}
+.fsub{background:var(--grad);color:#fff;border:none;padding:1.05rem 2.5rem;border-radius:100px;font-family:var(--fa);font-size:.9rem;font-weight:700;cursor:none;letter-spacing:.03em;display:flex;align-items:center;justify-content:center;gap:.5rem;transition:transform .18s,box-shadow .18s,filter .18s;box-shadow:0 8px 30px rgba(124,92,255,.3);}
+.fsub:hover{transform:translateY(-3px);box-shadow:0 16px 50px rgba(124,92,255,.45);filter:brightness(1.05);}
+.fnote{font-family:var(--fa);font-size:.68rem;color:var(--muted);text-align:center;margin-top:.25rem;}
+.fok{display:none;text-align:center;padding:3rem 2rem;border:1px solid rgba(124,92,255,.25);background:rgba(124,92,255,.05);border-radius:14px;}
+.fok-ic{font-size:2.5rem;margin-bottom:1rem;}
+.fok-t{font-family:var(--fd);font-size:1.5rem;letter-spacing:.04em;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.5rem;}
+.fok-b{font-size:.875rem;color:var(--muted2);}
+.fok-b a{color:var(--wa);}
+
+/* ── FLOATING WHATSAPP ── */
+.waf{position:fixed;bottom:2rem;right:2rem;z-index:600;width:58px;height:58px;background:var(--wa);border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;cursor:none;animation:wpop .6s 1.5s ease both,wpls 3s 2.2s ease-in-out infinite;transition:transform .2s;}
+.waf:hover{transform:scale(1.12);}
+.waf svg{width:28px;height:28px;fill:#fff;}
+.waft{position:absolute;right:calc(100% + 12px);background:var(--surface2);border:1px solid var(--border-lit);border-radius:8px;padding:.45rem .85rem;font-family:var(--fa);font-size:.75rem;color:var(--text);white-space:nowrap;opacity:0;transform:translateX(6px);transition:opacity .2s,transform .2s;pointer-events:none;}
+.waf:hover .waft{opacity:1;transform:translateX(0);}
+@keyframes wpop{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
+@keyframes wpls{0%,100%{box-shadow:0 8px 32px rgba(37,211,102,.5),0 0 0 0 rgba(37,211,102,.4)}50%{box-shadow:0 8px 32px rgba(37,211,102,.5),0 0 0 18px rgba(37,211,102,0)}}
+
+/* ── FOOTER ── */
+footer{position:relative;z-index:10;padding:3rem 4rem;border-top:1px solid var(--border);background:rgba(4,4,10,.96);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:2rem;}
+.flogo .logo-n{font-size:1.4rem;}
+.fctr{text-align:center;}
+.fcopy{font-family:var(--fa);font-size:.72rem;color:var(--muted);}
+.flinks{display:flex;gap:1.75rem;justify-content:center;margin-top:.5rem;flex-wrap:wrap;}
+.flinks a{font-family:var(--fa);font-size:.72rem;color:var(--muted);text-decoration:none;transition:color .2s;}
+.flinks a:hover{color:var(--text);}
+.fright{display:flex;flex-direction:column;align-items:flex-end;gap:.5rem;}
+.fph{display:flex;align-items:center;gap:.5rem;font-family:var(--fa);font-size:.78rem;font-weight:600;color:var(--phone);text-decoration:none;transition:color .2s;}
+.fph:hover{color:var(--text);}
+.fwa{display:flex;align-items:center;gap:.5rem;font-family:var(--fa);font-size:.72rem;font-weight:600;color:var(--wa);text-decoration:none;transition:color .2s;}
+.fwa:hover{color:#fff;}
+.fwa svg,.fph svg{width:13px;height:13px;}
+
+/* ── SCROLL REVEAL ── */
+.rv{opacity:0;transform:translateY(36px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1);}
+.rvl{opacity:0;transform:translateX(-36px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1);}
+.rvr{opacity:0;transform:translateX(36px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1);}
+.rv.in,.rvl.in,.rvr.in{opacity:1;transform:none;}
+
+/* ── MOBILE ── */
+@media(max-width:1024px){
+  .nav-ul{display:none;}
+  .hamburger{display:flex;}
+}
+@media(max-width:960px){
+  nav{padding:1.1rem 2rem;}nav.sc{padding:.85rem 2rem;}
+  section{padding:5rem 2rem;}
+  #hero{padding:7rem 2rem 5rem;}
+  .hstats{flex-wrap:wrap;gap:2rem;}
+  #about{grid-template-columns:1fr;gap:3rem;}
+  .sgrid{grid-template-columns:1fr;}
+  .pgrid{grid-template-columns:1fr 1fr;}
+  .procgrid{grid-template-columns:1fr 1fr;gap:2.5rem;}
+  .procgrid::before{display:none;}
+  .tgrid{grid-template-columns:1fr;}
+  .tcard:nth-child(2),.tcard:nth-child(3){margin-top:0;}
+  .cgrid{grid-template-columns:1fr;}
+  .wgrid{grid-template-columns:1fr 1fr;}
+  .wcard:nth-child(2),.wcard:nth-child(5){margin-top:0;}
+  footer{grid-template-columns:1fr;text-align:center;}
+  .fright{align-items:center;}
+  .flinks{justify-content:center;}
+  #ctabanner{padding:4rem 2rem;}
+}
+@media(max-width:600px){
+  .pgrid{grid-template-columns:1fr;}.wgrid{grid-template-columns:1fr;}
+  .fr2{grid-template-columns:1fr;}.hctas{flex-direction:column;align-items:flex-start;}
+  .ctarow{flex-direction:column;align-items:center;}
+}
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div id="cur"></div><div id="ring"></div>
+
+<!-- 3D WEBGL BACKGROUND -->
+<canvas id="bgc"></canvas>
+
+<!-- MOBILE NAV -->
+<div id="mobile-nav">
+  <button class="mn-close" onclick="closeMobileNav()">✕</button>
+  <a href="#why" onclick="closeMobileNav()">Why Me</a>
+  <a href="#services" onclick="closeMobileNav()">Services</a>
+  <a href="#portfolio" onclick="closeMobileNav()">Portfolio</a>
+  <a href="#testimonials" onclick="closeMobileNav()">Reviews</a>
+  <a href="#faq" onclick="closeMobileNav()">FAQ</a>
+  <a href="#contact" onclick="closeMobileNav()">Contact</a>
+  <div class="mn-contact">
+    <a href="tel:+917200603280" class="mn-phone">📞 +91 7200603280</a>
+    <a href="https://wa.me/917200603280?text=Hi%2C%20I%20found%20your%20website%20and%20I%20want%20to%20work%20with%20you" target="_blank" class="mn-wa">💬 WhatsApp Me</a>
+  </div>
+</div>
+
+<!-- STICKY WHATSAPP -->
+<a href="https://wa.me/917200603280?text=Hi%2C%20I%20found%20your%20website%20and%20I%20want%20to%20work%20with%20you" target="_blank" class="waf" aria-label="WhatsApp">
+  <span class="waft">💬 WhatsApp Me</span>
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/></svg>
+</a>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#hero" class="logo-w">
+    <span class="logo-n">YUVARAJ DIGITAL</span>
+    <span class="logo-t">Digital Marketing Freelancer · Chennai</span>
+  </a>
+  <ul class="nav-ul">
+    <li><a href="#why">Why Me</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="tel:+917200603280" class="nav-ph">
+    <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+    +91 7200603280
+  </a>
+  <button class="hamburger" onclick="openMobileNav()">☰</button>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section id="hero">
+  <div class="hg"></div>
+  <div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
+  <div class="hi">
+    <div class="hbadge"><span class="bdot"></span>Chennai-based · Available for new projects</div>
+    <h1 class="hbrand">
+      <span class="hb1">YUVARAJ</span>
+      <span class="hb2">DIGITAL</span>
+      <span class="hb3">MARKETING</span>
+    </h1>
+    <p class="htag">I help businesses in Chennai and across India get <strong>found, loved, and chosen</strong> online — through performance marketing, SEO &amp; social media that actually drives revenue.</p>
+    <div class="hctas">
+      <a href="#contact" class="cp">✦ Work With Me</a>
+      <a href="https://wa.me/917200603280?text=Hi%2C%20I%20found%20your%20website%20and%20I%20want%20to%20work%20with%20you" target="_blank" class="cw">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/></svg>
+        WhatsApp Me
+      </a>
+      <a href="tel:+917200603280" class="cc">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        Call Now
+      </a>
+    </div>
+    <div class="hstats">
+      <div><div class="hs-n" data-target="80" data-sfx="+">0+</div><div class="hs-l">Clients Served</div></div>
+      <div><div class="hs-n" data-target="5" data-sfx="×">0×</div><div class="hs-l">Avg. ROAS</div></div>
+      <div><div class="hs-n" data-target="4" data-sfx="+">0+</div><div class="hs-l">Years Exp.</div></div>
+      <div><div class="hs-n" data-target="98" data-sfx="%">0%</div><div class="hs-l">Retention Rate</div></div>
+    </div>
+  </div>
+  <div class="scroll-i"><div class="sli"></div><span class="slbl">Scroll</span></div>
+</section>
+
+<!-- MARQUEE -->
+<div class="mqw">
+  <div class="mt">
+    <span class="mi">Google Ads</span><span class="mi">Meta Ads</span><span class="mi">SEO</span>
+    <span class="mi">Instagram Marketing</span><span class="mi">YouTube Ads</span>
+    <span class="mi">Content Strategy</span><span class="mi">Email Marketing</span>
+    <span class="mi">Analytics</span><span class="mi">Local SEO</span><span class="mi">Performance Marketing</span>
+    <span class="mi">Google Ads</span><span class="mi">Meta Ads</span><span class="mi">SEO</span>
+    <span class="mi">Instagram Marketing</span><span class="mi">YouTube Ads</span>
+    <span class="mi">Content Strategy</span><span class="mi">Email Marketing</span>
+    <span class="mi">Analytics</span><span class="mi">Local SEO</span><span class="mi">Performance Marketing</span>
+  </div>
+</div>
+
+<!-- ══ WHY CHOOSE ME ══ -->
+<section id="why">
+  <div class="why-hd rv">
+    <span class="stag">Why choose me</span>
+    <h2 class="sh2">The <em>difference</em> is personal</h2>
+    <p class="ssub">When you hire Yuvaraj Digital, you get a dedicated partner — not an agency intern. Here's why 80+ businesses across Tamil Nadu trust me with their growth.</p>
+  </div>
+  <div class="wgrid">
+    <div class="wcard rv">
+      <div class="wico wi1">🎯</div>
+      <div class="wtit">Results-Driven Approach</div>
+      <p class="wdsc">Every campaign is tied to real business outcomes — leads, sales, revenue. I don't celebrate impressions; I celebrate when your business grows and you call me to tell me about it.</p>
+      <span class="wmet">5× avg return</span><span class="wmetl">on ad spend managed</span>
+    </div>
+    <div class="wcard wfeat rv">
+      <div class="wico wi2">🚀</div>
+      <div class="wtit">Direct &amp; Dedicated Attention</div>
+      <p class="wdsc">No account managers, no handoffs, no juniors. You talk directly to me — the person actually running your campaigns, optimizing your ads, and reporting to you every week.</p>
+      <span class="wmet">80+ clients</span><span class="wmetl">personally managed by me</span>
+    </div>
+    <div class="wcard rv">
+      <div class="wico wi3">🎨</div>
+      <div class="wtit">Creative That Converts</div>
+      <p class="wdsc">Beautiful ads that don't convert are a waste of money. My creative strategy is rooted in psychology — copy, visuals, and messaging designed to make people stop scrolling and act.</p>
+      <span class="wmet">3× avg CTR</span><span class="wmetl">vs industry benchmark</span>
+    </div>
+    <div class="wcard rv">
+      <div class="wico wi4">📊</div>
+      <div class="wtit">Full Transparency Always</div>
+      <p class="wdsc">Monthly reports in plain Tamil or English — no jargon, no hiding behind metrics. You always know exactly where every rupee of your budget is going and what it's returning.</p>
+      <span class="wmet">100% transparent</span><span class="wmetl">reporting every month</span>
+    </div>
+    <div class="wcard rv">
+      <div class="wico wi5">⚡</div>
+      <div class="wtit">Speed &amp; Adaptability</div>
+      <p class="wdsc">Markets move fast. I iterate weekly — killing what doesn't work and scaling what does, so you're never stuck waiting for an agency's slow approval or billing cycle to catch up.</p>
+      <span class="wmet">48h launch time</span><span class="wmetl">from brief to campaigns live</span>
+    </div>
+    <div class="wcard rv">
+      <div class="wico wi6">🤝</div>
+      <div class="wtit">Local Knowledge, Global Skills</div>
+      <p class="wdsc">I understand Chennai audiences — their language, culture, and buying behavior. Combined with global marketing best practices, it's an edge no large agency replicates for you.</p>
+      <span class="wmet">4+ years</span><span class="wmetl">Chennai &amp; Tamil Nadu expertise</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SERVICES ══ -->
+<section id="services">
+  <div class="sint rv">
+    <div><span class="stag">What I offer</span><h2 class="sh2">Services that <em>scale</em> you</h2></div>
+    <p class="sintn">Every service is hands-on. You work directly with me — accountable for results every single month, no excuses.</p>
+  </div>
+  <div class="sgrid rv">
+    <div class="scard">
+      <div class="snum">01 — SEO</div><span class="sico">🔍</span>
+      <h3 class="stitle">Search Engine Optimisation</h3>
+      <p class="sdsc">Rank higher on Google for keywords your customers actually search. Technical audits, on-page optimisation, and link building that compounds month over month.</p>
+      <div class="stags2"><span class="stag2">On-page SEO</span><span class="stag2">Technical SEO</span><span class="stag2">Link Building</span><span class="stag2">Local SEO</span></div>
+      <a class="scta" href="#contact">Get Started →</a>
+    </div>
+    <div class="scard">
+      <div class="snum">02 — PPC</div><span class="sico">📈</span>
+      <h3 class="stitle">Google Ads &amp; PPC</h3>
+      <p class="sdsc">High-converting Google Search, Shopping, and Display campaigns. Every rupee tracked, optimised weekly, and scaled only when the ROI clearly justifies it.</p>
+      <div class="stags2"><span class="stag2">Search Ads</span><span class="stag2">Shopping Ads</span><span class="stag2">Display</span><span class="stag2">Remarketing</span></div>
+      <a class="scta" href="#contact">Get Started →</a>
+    </div>
+    <div class="scard">
+      <div class="snum">03 — Social Ads</div><span class="sico">📱</span>
+      <h3 class="stitle">Meta &amp; Instagram Ads</h3>
+      <p class="sdsc">Facebook and Instagram campaigns built for awareness, leads, and sales. Creative strategy + precise audience targeting + constant A/B testing every week.</p>
+      <div class="stags2"><span class="stag2">Facebook Ads</span><span class="stag2">Instagram Ads</span><span class="stag2">Reels Ads</span><span class="stag2">Lead Gen</span></div>
+      <a class="scta" href="#contact">Get Started →</a>
+    </div>
+    <div class="scard">
+      <div class="snum">04 — Social Media</div><span class="sico">🌐</span>
+      <h3 class="stitle">Social Media Management</h3>
+      <p class="sdsc">Content calendars, creative posts, Reels scripting, hashtag strategy, and community management across Instagram, Facebook, and LinkedIn — done for you.</p>
+      <div class="stags2"><span class="stag2">Content Creation</span><span class="stag2">Reels Strategy</span><span class="stag2">Community Mgmt</span></div>
+      <a class="scta" href="#contact">Get Started →</a>
+    </div>
+    <div class="scard">
+      <div class="snum">05 — Content</div><span class="sico">✍️</span>
+      <h3 class="stitle">Content &amp; Copywriting</h3>
+      <p class="sdsc">Blog posts, ad copy, landing page content, and email sequences — written to rank on Google, convert visitors, and sound unmistakably like your brand.</p>
+      <div class="stags2"><span class="stag2">Blog Writing</span><span class="stag2">Ad Copywriting</span><span class="stag2">Email Sequences</span></div>
+      <a class="scta" href="#contact">Get Started →</a>
+    </div>
+    <div class="scard">
+      <div class="snum">06 — Analytics</div><span class="sico">📊</span>
+      <h3 class="stitle">Analytics &amp; Reporting</h3>
+      <p class="sdsc">GA4 setup, custom dashboards, attribution modelling, and monthly performance reports in plain Tamil or English — no jargon, no hiding numbers from you.</p>
+      <div class="stags2"><span class="stag2">GA4 Setup</span><span class="stag2">Dashboards</span><span class="stag2">UTM Tracking</span></div>
+      <a class="scta" href="#contact">Get Started →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ABOUT ══ -->
+<section id="about">
+  <div class="acard rvl">
+    <div class="acbg"></div>
+    <div class="avrow">
+      <div class="avcirc">YD</div>
+      <div>
+        <div class="avnam">YUVARAJ DIGITAL</div>
+        <div class="avrole">Digital Marketing Freelancer</div>
+        <div class="avloc">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Chennai, Tamil Nadu
+        </div>
+      </div>
+    </div>
+    <p class="abio">4+ years of hands-on digital marketing. 80+ businesses across Chennai, Coimbatore, Madurai, and beyond. I turn ad budgets into real, trackable revenue — not just reports full of vanity metrics.</p>
+    <div class="astg">
+      <div class="ast"><div class="asv">80+</div><div class="asl">Clients</div></div>
+      <div class="ast"><div class="asv">₹5Cr+</div><div class="asl">Ad Spend Mgd</div></div>
+      <div class="ast"><div class="asv">98%</div><div class="asl">Retention</div></div>
+    </div>
+    <div class="acont">
+      <a href="tel:+917200603280" class="aci"><div class="acio">📞</div><div><div class="clbl">Call me directly</div><div class="cval">+91 7200603280</div></div></a>
+      <a href="https://wa.me/917200603280?text=Hi%2C%20I%20found%20your%20website%20and%20I%20want%20to%20work%20with%20you" target="_blank" class="aci"><div class="acio">💬</div><div><div class="clbl">WhatsApp</div><div class="cval">wa.me/917200603280</div></div></a>
+      <a href="mailto:yuvaraj@yuvarajdigital.in" class="aci"><div class="acio">✉️</div><div><div class="clbl">Email</div><div class="cval">yuvaraj@yuvarajdigital.in</div></div></a>
+    </div>
+    <a href="https://wa.me/917200603280?text=Hi%2C%20I%20found%20your%20website%20and%20I%20want%20to%20work%20with%20you" target="_blank" class="bwa">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/></svg>
+      Chat on WhatsApp Now
+    </a>
+  </div>
+  <div class="atxt rvr">
+    <span class="stag">About Yuvaraj Digital</span>
+    <h2 class="sh2">Chennai-based.<br><em>Results-obsessed.</em></h2>
+    <p class="abdy">I'm Yuvaraj, a freelance digital marketer based in Chennai with 4+ years of experience helping local businesses, D2C brands, and service companies grow their online presence and revenue across India.</p>
+    <p class="abdy">When you work with Yuvaraj Digital, you get direct access — no account managers, no interns, no bureaucracy. I personally run your campaigns, analyse your data, and report to you every week in clear, plain language you can act on.</p>
+    <p class="abdy">I've worked with restaurants in T. Nagar, real estate developers in OMR, e-commerce brands across Tamil Nadu, coaching institutes in Coimbatore, and service businesses across India.</p>
+    <div class="schips">
+      <span class="schip">Google Ads Certified</span><span class="schip">Meta Blueprint</span>
+      <span class="schip">GA4 &amp; GTM Expert</span><span class="schip">SEMrush Certified</span>
+      <span class="schip">HubSpot Inbound</span><span class="schip">Shopify Marketing</span>
+      <span class="schip">Local SEO Specialist</span><span class="schip">Tamil Nadu Markets</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PORTFOLIO ══ -->
+<section id="portfolio">
+  <div class="phd rv"><span class="stag">Portfolio</span><h2 class="sh2">Real clients,<br><em>real results</em></h2></div>
+  <div class="pgrid rv">
+    <div class="pcard"><div class="pvis pv1"><span class="pem">🍽️</span></div><div class="pbdy"><div class="pcat">Restaurant · SEO + Instagram</div><div class="pnam">Spice Route, T. Nagar</div><p class="pres">Grew Instagram from 800 to 18,000 real followers in 8 months. Monthly footfall up 3× via local SEO &amp; Google Maps.</p><div class="pbdg">+220% Organic Traffic</div></div></div>
+    <div class="pcard"><div class="pvis pv2"><span class="pem">🏡</span></div><div class="pbdy"><div class="pcat">Real Estate · Google Ads</div><div class="pnam">Prestige Realty, OMR</div><p class="pres">Generated 340+ qualified leads in 3 months at ₹180 CPL via Google Search Ads — previous agency was charging ₹850 CPL.</p><div class="pbdg">₹180 CPL Achieved</div></div></div>
+    <div class="pcard"><div class="pvis pv3"><span class="pem">👗</span></div><div class="pbdy"><div class="pcat">E-Commerce · Meta Ads + SEO</div><div class="pnam">KuriSilk (D2C Fashion)</div><p class="pres">Scaled Meta Ads from ₹30K to ₹2L/month ad spend while maintaining 5.8× ROAS consistently for 6 months.</p><div class="pbdg">5.8× ROAS</div></div></div>
+    <div class="pcard"><div class="pvis pv4"><span class="pem">🎓</span></div><div class="pbdy"><div class="pcat">EdTech · YouTube + Google Ads</div><div class="pnam">BrightPath Institute</div><p class="pres">YouTube ad campaign drove 1,200 course enrolments in 60 days. Cost per enrolment dropped 62% vs previous campaigns.</p><div class="pbdg">62% Lower CPA</div></div></div>
+    <div class="pcard"><div class="pvis pv5"><span class="pem">🏋️</span></div><div class="pbdy"><div class="pcat">Fitness · Instagram + Local SEO</div><div class="pnam">FitZone Gym, Velachery</div><p class="pres">Ranked #1 on Google Maps for "gym in Velachery". New memberships jumped 180% in 4 months with zero increase in ad spend.</p><div class="pbdg">+180% New Members</div></div></div>
+    <div class="pcard"><div class="pvis pv6"><span class="pem">🏥</span></div><div class="pbdy"><div class="pcat">Healthcare · SEO + Content</div><div class="pnam">Dr. Meena's Dental Clinic</div><p class="pres">SEO blog strategy drove 5,000+ monthly website visitors from zero. Online appointment bookings increased 4× in 6 months.</p><div class="pbdg">4× Online Bookings</div></div></div>
+  </div>
+</section>
+
+<!-- ══ PROCESS ══ -->
+<section id="process">
+  <div class="prochd rv"><span class="stag">How I work</span><h2 class="sh2">Simple, <em>transparent</em> process</h2></div>
+  <div class="procgrid rv">
+    <div class="ps"><div class="pn">01</div><div class="ptit">Free Audit</div><p class="pdsc">I review your website, ads, SEO, and social media — then share a detailed audit with clear gaps and opportunities. No cost, no obligation.</p></div>
+    <div class="ps"><div class="pn">02</div><div class="ptit">Strategy Call</div><p class="pdsc">We discuss your goals, budget, and timeline on a call or WhatsApp. I propose a custom plan with clear KPIs, channel mix, and monthly milestones.</p></div>
+    <div class="ps"><div class="pn">03</div><div class="ptit">Launch &amp; Optimise</div><p class="pdsc">Campaigns go live within 48 hours. I test creatives, audiences, and bids weekly — stopping what doesn't work and doubling what does.</p></div>
+    <div class="ps"><div class="pn">04</div><div class="ptit">Monthly Reports</div><p class="pdsc">Every month you get a clear report in plain language — what happened, why it happened, what changed, and the exact plan for next month.</p></div>
+  </div>
+</section>
+
+<!-- ══ TESTIMONIALS ══ -->
+<section id="testimonials">
+  <div class="thd rv"><span class="stag">Client reviews</span><h2 class="sh2">What my clients <em>say</em></h2></div>
+  <div class="tgrid rv">
+    <div class="tcard"><span class="tq">"</span><div class="tstars">★★★★★</div><p class="ttxt">Yuvaraj Digital transformed our Instagram from a ghost town to our biggest lead source. Within 5 months we had 12,000 real followers and our weekend bookings were full 2 weeks in advance. Incredible work.</p><div class="tau"><div class="tav ta1">RK</div><div><div class="tnam">Rajesh Kumar</div><div class="trol">Owner, Spice Route Restaurant · T. Nagar, Chennai</div></div></div></div>
+    <div class="tcard"><span class="tq">"</span><div class="tstars">★★★★★</div><p class="ttxt">We'd burned money on two agencies before finding Yuvaraj Digital. He spent the first week auditing everything before touching our budget. By month two, leads were coming in at half the previous cost. Very transparent.</p><div class="tau"><div class="tav ta2">PV</div><div><div class="tnam">Preethi Venkat</div><div class="trol">Sales Head, Prestige Realty · OMR, Chennai</div></div></div></div>
+    <div class="tcard"><span class="tq">"</span><div class="tstars">★★★★★</div><p class="ttxt">Our D2C brand was stuck at ₹50K ad spend with declining ROAS. Yuvaraj Digital scaled us to ₹2 lakhs/month in 4 months without the ROAS ever dropping below 5×. He genuinely understands e-commerce.</p><div class="tau"><div class="tav ta3">SA</div><div><div class="tnam">Sowmiya Arjunan</div><div class="trol">Founder, KuriSilk · Chennai</div></div></div></div>
+    <div class="tcard"><span class="tq">"</span><div class="tstars">★★★★★</div><p class="ttxt">நான் digital marketing பத்தி எதுவும் தெரியாத business owner. Yuvaraj Digital எல்லாத்தையும் Tamil-la explain பண்ணாங்க, monthly report அனுப்புவாங்க. Results excellent — gym memberships 2× ஆச்சு!</p><div class="tau"><div class="tav ta4">MK</div><div><div class="tnam">Muthu Krishnan</div><div class="trol">Owner, FitZone Gym · Velachery, Chennai</div></div></div></div>
+    <div class="tcard"><span class="tq">"</span><div class="tstars">★★★★★</div><p class="ttxt">Our website traffic was near zero before Yuvaraj Digital. After 6 months of SEO and content work, we get 5,000+ monthly visitors and our online appointment bookings have gone up 4×. Best investment we made.</p><div class="tau"><div class="tav ta5">DM</div><div><div class="tnam">Dr. Meena Suresh</div><div class="trol">Dental Surgeon · Anna Nagar, Chennai</div></div></div></div>
+    <div class="tcard"><span class="tq">"</span><div class="tstars">★★★★★</div><p class="ttxt">Yuvaraj Digital built our entire YouTube ads strategy from scratch for our course launch. 1,200 enrolments in 60 days at a cost-per-student we never thought achievable. Now our go-to for every campaign.</p><div class="tau"><div class="tav ta6">AS</div><div><div class="tnam">Anand Sundar</div><div class="trol">Director, BrightPath Institute · Coimbatore</div></div></div></div>
+  </div>
+</section>
+
+<!-- ══ FAQ ══ -->
+<section id="faq">
+  <div class="faqhd rv"><span class="stag">Common questions</span><h2 class="sh2">Frequently <em>asked</em></h2></div>
+  <div class="faqlist rv">
+    <div class="faqitem">
+      <div class="faqq" onclick="toggleFaq(this)">How much does it cost to work with Yuvaraj Digital?<span class="faqarrow">+</span></div>
+      <div class="faqa"><div class="faqa-inner">Pricing depends on the service and scope. Monthly retainers start from ₹8,000/month for basic social media management and go up based on ad spend managed, number of platforms, and complexity. I offer a free audit and strategy call first — no payment until you're comfortable with the plan.</div></div>
+    </div>
+    <div class="faqitem">
+      <div class="faqq" onclick="toggleFaq(this)">How quickly will I see results?<span class="faqarrow">+</span></div>
+      <div class="faqa"><div class="faqa-inner">Paid ads (Google &amp; Meta) typically show initial results within the first 2–4 weeks as we gather data and optimise. SEO is a longer game — meaningful organic traffic improvements usually show within 3–6 months. I'll always set realistic expectations upfront, never promise overnight miracles.</div></div>
+    </div>
+    <div class="faqitem">
+      <div class="faqq" onclick="toggleFaq(this)">Do you work with businesses outside Chennai?<span class="faqarrow">+</span></div>
+      <div class="faqa"><div class="faqa-inner">Absolutely. While I'm based in Chennai, I work with clients across India — Coimbatore, Madurai, Bangalore, Mumbai, Delhi, and even internationally. All communication happens over WhatsApp, email, or Zoom, and I'm responsive across time zones.</div></div>
+    </div>
+    <div class="faqitem">
+      <div class="faqq" onclick="toggleFaq(this)">Will I have to sign a long-term contract?<span class="faqarrow">+</span></div>
+      <div class="faqa"><div class="faqa-inner">No lock-in contracts. I work on monthly retainers — you can pause or stop with 30 days' notice. I believe in earning your trust every month through results, not trapping you with paperwork. Most of my clients have been with me for 1–3 years because the results speak for themselves.</div></div>
+    </div>
+    <div class="faqitem">
+      <div class="faqq" onclick="toggleFaq(this)">What budget do I need for Google or Meta Ads?<span class="faqarrow">+</span></div>
+      <div class="faqa"><div class="faqa-inner">For meaningful results on Google or Meta Ads, I recommend a minimum ad spend of ₹15,000–₹20,000/month. My management fee is separate and scales with your spend. Below this threshold, the data is too thin to optimise effectively and I won't promise results I can't deliver.</div></div>
+    </div>
+    <div class="faqitem">
+      <div class="faqq" onclick="toggleFaq(this)">How do you report results? Will I understand it?<span class="faqarrow">+</span></div>
+      <div class="faqa"><div class="faqa-inner">Every month I send a clear report in plain Tamil or English — no confusing dashboards, no unexplained metrics. The report covers: what we spent, what we earned, what worked, what didn't, and the exact plan for next month. If you want a detailed call to walk through it, that's always available too.</div></div>
+    </div>
+    <div class="faqitem">
+      <div class="faqq" onclick="toggleFaq(this)">Can I reach you on WhatsApp during campaigns?<span class="faqarrow">+</span></div>
+      <div class="faqa"><div class="faqa-inner">Yes — and this is one of the biggest advantages of working with me directly. You can WhatsApp me at +91 7200603280 and I personally respond, usually within a few hours. No raising tickets, no waiting for a "dedicated account manager" to relay your message to someone else.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA BANNER ══ -->
+<div id="ctabanner">
+  <h2 class="ctabn rv">Ready to <em>grow</em> your business?</h2>
+  <p class="ctasub rv">Get a free audit — no payment, no obligation. Just a clear picture of where you stand and where you can go.</p>
+  <div class="ctarow rv">
+    <a href="#contact" class="cp">✦ Get Free Audit</a>
+    <a href="https://wa.me/917200603280?text=Hi%2C%20I%20found%20your%20website%20and%20I%20want%20to%20work%20with%20you" target="_blank" class="cw">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/></svg>
+      WhatsApp Me Now
+    </a>
+    <a href="tel:+917200603280" class="cc">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+      Call +91 7200603280
+    </a>
+  </div>
+</div>
+
+<!-- ══ CONTACT ══ -->
+<section id="contact">
+  <div class="cgrid">
+    <div class="rv">
+      <span class="stag">Get in touch</span>
+      <h2 class="sh2">Let's grow your <em>business.</em></h2>
+      <p class="cintro">Drop me a message, call, or WhatsApp — I respond within a few hours. The first audit call is always free, with zero obligations.</p>
+      <div class="citems">
+        <a href="tel:+917200603280" class="ci"><div class="cico">📞</div><div><div class="clbl">Call / Phone</div><div class="cval">+91 7200603280</div></div></a>
+        <a href="https://wa.me/917200603280?text=Hi%2C%20I%20found%20your%20website%20and%20I%20want%20to%20work%20with%20you" target="_blank" class="ci"><div class="cico">💬</div><div><div class="clbl">WhatsApp</div><div class="cval">+91 7200603280</div></div></a>
+        <a href="mailto:yuvaraj@yuvarajdigital.in" class="ci"><div class="cico">✉️</div><div><div class="clbl">Email</div><div class="cval">yuvaraj@yuvarajdigital.in</div></div></a>
+        <div class="ci" style="pointer-events:none"><div class="cico">📍</div><div><div class="clbl">Location</div><div class="cval">Chennai, Tamil Nadu — serving clients pan-India</div></div></div>
+      </div>
+      <a href="https://wa.me/917200603280?text=Hi%2C%20I%20found%20your%20website%20and%20I%20want%20to%20work%20with%20you" target="_blank" class="wabig">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/></svg>
+        WhatsApp Me Now
+      </a>
+    </div>
+    <div class="rv">
+      <form class="cform" id="cform" onsubmit="submitForm(event)">
+        <div class="fr2">
+          <div class="fg"><label class="fl">Your Name</label><input type="text" class="fc" placeholder="Arjun Kumar" required></div>
+          <div class="fg"><label class="fl">Phone / WhatsApp</label><input type="tel" class="fc" placeholder="+91 98765 43210"></div>
+        </div>
+        <div class="fg"><label class="fl">Email</label><input type="email" class="fc" placeholder="you@company.com" required></div>
+        <div class="fg"><label class="fl">Business Name</label><input type="text" class="fc" placeholder="Your business name"></div>
+        <div class="fg">
+          <label class="fl">Service Needed</label>
+          <select class="fc fsel">
+            <option value="" disabled selected>Select a service</option>
+            <option>SEO</option><option>Google Ads / PPC</option>
+            <option>Meta &amp; Instagram Ads</option><option>Social Media Management</option>
+            <option>Content &amp; Copywriting</option><option>Analytics &amp; Reporting</option>
+            <option>Full Digital Marketing Package</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label class="fl">Monthly Budget</label>
+          <select class="fc fsel">
+            <option value="" disabled selected>Select budget range</option>
+            <option>Under ₹10,000/month</option><option>₹10,000 – ₹30,000/month</option>
+            <option>₹30,000 – ₹75,000/month</option><option>₹75,000 – ₹2L/month</option>
+            <option>Above ₹2L/month</option>
+          </select>
+        </div>
+        <div class="fg"><label class="fl">Tell me about your goals</label><textarea class="fc" rows="4" placeholder="What do you want to achieve? More leads, more sales, better visibility online?"></textarea></div>
+        <button type="submit" class="fsub">Send Message →</button>
+        <p class="fnote">I respond within 24h. For faster replies, WhatsApp me directly at +91 7200603280</p>
+      </form>
+      <div class="fok" id="fok">
+        <div class="fok-ic">✅</div>
+        <div class="fok-t">Message Received!</div>
+        <p class="fok-b">I'll be in touch within 24 hours with your free audit.<br>Need faster? <a href="https://wa.me/917200603280" target="_blank">WhatsApp +91 7200603280</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="flogo">
+    <a href="#hero" class="logo-w" style="text-decoration:none">
+      <span class="logo-n">YUVARAJ DIGITAL</span>
+      <span class="logo-t">Helping Businesses Grow Online</span>
+    </a>
+  </div>
+  <div class="fctr">
+    <p class="fcopy">© 2025 Yuvaraj Digital · Chennai, Tamil Nadu · All rights reserved.</p>
+    <nav class="flinks">
+      <a href="#why">Why Me</a><a href="#services">Services</a>
+      <a href="#portfolio">Portfolio</a><a href="#testimonials">Reviews</a>
+      <a href="#faq">FAQ</a><a href="#contact">Contact</a>
+    </nav>
+  </div>
+  <div class="fright">
+    <a href="tel:+917200603280" class="fph">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+      +91 7200603280
+    </a>
+    <a href="https://wa.me/917200603280?text=Hi%2C%20I%20found%20your%20website%20and%20I%20want%20to%20work%20with%20you" target="_blank" class="fwa">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/></svg>
+      WhatsApp Me
+    </a>
+  </div>
+</footer>
+
+<script>
+// ── CURSOR ──
+const cur=document.getElementById('cur'),ring=document.getElementById('ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+(function tick(){cur.style.left=mx+'px';cur.style.top=my+'px';rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(tick);})();
+
+// ── WEBGL 3D BACKGROUND ──
+(function(){
+  const canvas=document.getElementById('bgc');
+  const gl=canvas.getContext('webgl')||canvas.getContext('experimental-webgl');
+  if(!gl)return;
+  function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;gl.viewport(0,0,canvas.width,canvas.height);}
+  resize();window.addEventListener('resize',resize);
+  const vs=`attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}`;
+  const fs=`precision mediump float;
+  uniform float t;uniform vec2 res,mouse;
+  float noise(vec2 p){vec2 i=floor(p);vec2 f=fract(p);vec2 u=f*f*(3.-2.*f);
+    float a=fract(sin(dot(i,vec2(127.1,311.7)))*43758.5);
+    float b=fract(sin(dot(i+vec2(1.,0.),vec2(127.1,311.7)))*43758.5);
+    float c=fract(sin(dot(i+vec2(0.,1.),vec2(127.1,311.7)))*43758.5);
+    float d=fract(sin(dot(i+vec2(1.,1.),vec2(127.1,311.7)))*43758.5);
+    return mix(mix(a,b,u.x),mix(c,d,u.x),u.y);}
+  vec3 hsv(float h,float s,float v){vec4 K=vec4(1.,2./3.,1./3.,3.);
+    vec3 p=abs(fract(vec3(h)+K.xyz)*6.-K.www);
+    return v*mix(K.xxx,clamp(p-K.xxx,0.,1.),s);}
+  void main(){
+    vec2 uv=(gl_FragCoord.xy-.5*res)/min(res.x,res.y);
+    vec2 m=(mouse-.5*res)/min(res.x,res.y);
+    float tm=t*.25;
+    float n=noise(uv*3.+tm*.3)+noise(uv*6.-tm*.15)*.5+noise(uv*12.+tm*.2)*.25;n/=1.75;
+    float g=smoothstep(.48,.47,length(fract(uv*8.+tm*.1)-.5));
+    float gw=exp(-dot(uv-m,uv-m)*8.)*.55;
+    vec3 c=mix(hsv(.72,.82,.6+n*.4),hsv(.9,.72,.5+n*.3),n);
+    c*=g*.08+n*.13;c+=gw*vec3(.5,.35,1.)*.15;
+    gl_FragColor=vec4(c,1.);}`;
+  function sh(type,src){const s=gl.createShader(type);gl.shaderSource(s,src);gl.compileShader(s);return s;}
+  const prog=gl.createProgram();
+  gl.attachShader(prog,sh(gl.VERTEX_SHADER,vs));gl.attachShader(prog,sh(gl.FRAGMENT_SHADER,fs));
+  gl.linkProgram(prog);gl.useProgram(prog);
+  const buf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buf);
+  gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
+  const loc=gl.getAttribLocation(prog,'p');gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
+  const ut=gl.getUniformLocation(prog,'t'),ur=gl.getUniformLocation(prog,'res'),um=gl.getUniformLocation(prog,'mouse');
+  let mouse=[window.innerWidth/2,window.innerHeight/2];
+  document.addEventListener('mousemove',e=>{mouse=[e.clientX,window.innerHeight-e.clientY];});
+  let time=0;
+  (function loop(){time+=.016;gl.uniform1f(ut,time);gl.uniform2f(ur,canvas.width,canvas.height);gl.uniform2f(um,mouse[0],mouse[1]);gl.drawArrays(gl.TRIANGLE_STRIP,0,4);requestAnimationFrame(loop);})();
+})();
+
+// ── FLOATING PARTICLES ──
+(function(){
+  const c=document.createElement('canvas');
+  c.style.cssText='position:fixed;inset:0;z-index:3;pointer-events:none;opacity:.4';
+  document.body.appendChild(c);
+  const ctx=c.getContext('2d');
+  function rsz(){c.width=window.innerWidth;c.height=window.innerHeight;}
+  rsz();window.addEventListener('resize',rsz);
+  const ps=Array.from({length:55},()=>({
+    x:Math.random()*window.innerWidth,y:Math.random()*window.innerHeight,
+    r:Math.random()*1.5+.4,vx:(Math.random()-.5)*.25,vy:-(Math.random()*.35+.1),
+    life:Math.random(),spd:Math.random()*.01+.003,hue:Math.random()<.5?265:330
+  }));
+  (function loop(){
+    ctx.clearRect(0,0,c.width,c.height);
+    ps.forEach(p=>{
+      p.life+=p.spd;
+      if(p.life>1){p.life=0;p.x=Math.random()*c.width;p.y=c.height+10;}
+      p.x+=p.vx;p.y+=p.vy;
+      const a=Math.sin(p.life*Math.PI)*.65;
+      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=`hsla(${p.hue},80%,70%,${a})`;ctx.fill();
+    });
+    requestAnimationFrame(loop);
+  })();
+})();
+
+// ── NAV SCROLL ──
+window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('sc',window.scrollY>50);});
+
+// ── MOBILE NAV ──
+function openMobileNav(){document.getElementById('mobile-nav').classList.add('open');document.body.style.overflow='hidden';}
+function closeMobileNav(){document.getElementById('mobile-nav').classList.remove('open');document.body.style.overflow='';}
+
+// ── SCROLL REVEAL ──
+const rvEls=document.querySelectorAll('.rv,.rvl,.rvr');
+const rio=new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{
+    if(e.isIntersecting){
+      e.target.style.transitionDelay=(i%4*.1)+'s';
+      e.target.classList.add('in');
+      rio.unobserve(e.target);
+    }
+  });
+},{threshold:.08});
+rvEls.forEach(el=>rio.observe(el));
+
+// ── COUNTER ANIMATION ──
+function animCounters(){
+  document.querySelectorAll('.hs-n[data-target]').forEach(el=>{
+    const target=+el.dataset.target,sfx=el.dataset.sfx||'';
+    let cur=0;const steps=70,inc=target/steps;let n=0;
+    const tm=setInterval(()=>{cur=Math.min(cur+inc,target);n++;el.textContent=Math.floor(cur)+sfx;if(n>=steps)clearInterval(tm);},20);
+  });
+}
+const hio=new IntersectionObserver(e=>{if(e[0].isIntersecting){animCounters();hio.disconnect();}},{threshold:.4});
+const se=document.querySelector('.hstats');if(se)hio.observe(se);
+
+// ── SERVICE LINKS → scroll to contact ──
+document.querySelectorAll('.scta').forEach(a=>{
+  a.addEventListener('click',e=>{e.preventDefault();document.getElementById('contact').scrollIntoView({behavior:'smooth'});});
+});
+
+// ── ABOUT CARD 3D TILT ──
+const ac=document.querySelector('.acard');
+if(ac){
+  ac.addEventListener('mousemove',e=>{
+    const r=ac.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+    ac.style.transform=`rotateY(${x*10}deg) rotateX(${-y*6}deg) scale(1.01)`;
+    ac.style.boxShadow=`${x*30}px ${-y*20}px 80px rgba(124,92,255,.18),0 40px 120px rgba(0,0,0,.6)`;
+  });
+  ac.addEventListener('mouseleave',()=>{ac.style.transform='';ac.style.boxShadow='';});
+}
+
+// ── FAQ ACCORDION ──
+function toggleFaq(el){
+  const item=el.parentElement;
+  const isOpen=item.classList.contains('open');
+  document.querySelectorAll('.faqitem.open').forEach(i=>i.classList.remove('open'));
+  if(!isOpen)item.classList.add('open');
+}
+
+// ── FORM SUBMIT ──
+function submitForm(e){
+  e.preventDefault();
+  document.getElementById('cform').style.display='none';
+  document.getElementById('fok').style.display='block';
+}
+
+// ── ACTIVE NAV HIGHLIGHT ──
+const sections=document.querySelectorAll('section[id]');
+const navLinks=document.querySelectorAll('.nav-ul a');
+window.addEventListener('scroll',()=>{
+  const scrollY=window.scrollY+140;
+  sections.forEach(section=>{
+    if(scrollY>=section.offsetTop&&scrollY<section.offsetTop+section.offsetHeight){
+      navLinks.forEach(a=>{
+        a.style.color=a.getAttribute('href')==='#'+section.id?'var(--text)':'';
+      });
+    }
+  });
+},{passive:true});
+</script>
+</body>
+</html>
